@@ -7,13 +7,13 @@ channel_targets:
 cxx_compiler:
 - clangxx
 cxx_compiler_version:
-- '11'
+- '12'
 libcurl:
 - '7'
 macos_machine:
 - x86_64-apple-darwin13.4.0
 numpy:
-- '1.18'
+- '1.19'
 pin_run_as_build:
   libcurl:
     max_pin: x
