@@ -5,8 +5,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://github.com/thermohub/thermohubclient/archive/v{{ version }}.tar.gz
-  sha256: 4afcc592025a130e5b92342f6b6eac959237a9e337e888304ece9cb3e4530b52
+  #url: https://github.com/thermohub/thermohubclient/archive/v{{ version }}.tar.gz
+  #sha256: 4afcc592025a130e5b92342f6b6eac959237a9e337e888304ece9cb3e4530b52
+
+  git_url: https://github.com/thermohub/thermohubclient.git
+  git_rev: gdmiron-patch-1
 
 build:
   number: 4
@@ -15,10 +18,14 @@ build:
 requirements:
   build:
     - {{ compiler('cxx') }}
-    - {{ stdlib("c") }}
+    - {{ compiler('c') }}
+    - {{ stdlib('c') }}
     - cmake
     - ninja  # [win]
-    - make  # [unix]
+    - make   # [unix]
+    - python                                 # [build_platform != target_platform]
+    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
+    - pybind11                               # [build_platform != target_platform]
   host:
     - pybind11
     - nlohmann_json
